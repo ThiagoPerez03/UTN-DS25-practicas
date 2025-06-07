@@ -1,0 +1,71 @@
+:root {
+    --primary-color: #95BCD0;
+    --secondary-color: #19283E;
+    --light-beige-bg: #F8EDDE; 
+    --dark-blue-texture: url('../images/contenedorAzul.jpg'); 
+    --paper-texture: url('../images/paper.jpg'); 
+    --text-on-dark: #19283E; 
+    --text-on-light: #F8EDDE; 
+    --postcard-unified-bg: #FAF3E8; 
+    --postcard-unified-border: #D7C8B6;
+    --postcard-unified-text: #4A3B31;
+    --postcard-unified-lines: #C5B7A8;
+}
+
+
+body {
+    background-image: var(--paper-texture);
+    padding: 20px;
+    border-radius: 10px;
+    background-blend-mode: multiply;
+    padding-top: 10px;
+    position: relative; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    min-height: 130px; 
+    padding-bottom: 60px; 
+}
+header {
+    background-image: var(--paper-texture);
+    background-blend-mode: multiply;
+    padding-top: 10px;
+    position: relative; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    min-height: 130px; 
+    padding-bottom: 60px; 
+}
+
+h1 {
+    color: var(--secondary-color);
+    font-size: 36px;
+    text-align: center;
+    margin-top: 20px;
+}
+p {
+    color: var(--secondary-color);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
+}
+img {
+    display: block;
+    margin: 0 auto;
+    width: 100px; /* Adjusted for better visibility */
+    height: auto; /* Maintain aspect ratio */
+}
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+li {
+    margin: 5px 0;
+    font-size: 22px;
+}
+ul.index-menu li {
+    color: var(--secondary-color); /* Changed from lightblue to a more readable blue */
+    font-size: 22px;
+}
+ul.index-menu li:hover {
+    color: var(--primary-color);
+    cursor: pointer;
+}

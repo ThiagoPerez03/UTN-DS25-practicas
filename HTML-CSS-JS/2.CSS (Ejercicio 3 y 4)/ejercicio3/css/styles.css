@@ -1,0 +1,35 @@
+table {
+    border-collapse: collapse;
+    width: 50%;
+    height: 200px;
+}
+td, th {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.row1 .col1, .row4 .col4 {
+    background-color: lightsalmon;
+}
+
+.row1 .col2, .row1 .col4, .row3 .col1, .row3 .col4, .row4 .col1, .row4 .col2 {
+    background-color: lightblue;
+}
+
+.row2 .col1, .row2 .col2, .row2 .col4{
+    background-color: lightgreen;
+}
+
+.row1 .col3, .row3 .col3, .row4 .col3{
+    background-color: lightpink;
+}
+
+.row1 .col3, .row3 .col3, .row4 .col3{
+    background-color: lightpink;
+}
+.row2 .col3 {
+    background-color: lightgoldenrodyellow;
+}
+.row3 .col2 {
+    background-color: lightslategray;
+}

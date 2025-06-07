@@ -1,0 +1,89 @@
+<!--Ejercicio 2: Libro
+Escribir un sitio web en HTML que sea un Libro. Debe contener:
+Index  (página de inicio), que tenga el título, una breve descripción y un índice de los capítulos correctamente vinculados.
+Capítulos: crear al menos cuatro capítulos en los que aparezca el título del capítulo y su texto correctamente dispuesto en párrafos. 
+También los vínculos para ir al índice y los capitulos “anterior” y “siguiente” en caso que posean.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter</title>
+<body>
+    <header id="inicio">
+        <h1>Harry Potter y la piedra filosofal</h1>
+        <h4>Descripción</h4>
+        <p>El primer libro de la exitosa saga escrita por J.K. Rowling. Narra la historia de Harry Potter, un niño huérfano que, en su undécimo cumpleaños, descubre que es mago y es invitado a estudiar en el Colegio Hogwarts de Magia y Hechicería. En Hogwarts, Harry no solo desentrañará los misterios de su pasado y su conexión con el temido Lord Voldemort, sino que también forjará amistades inquebrantables con Ron Weasley y Hermione Granger. Juntos se enfrentarán a innumerables peligros y pruebas, incluyendo la búsqueda de la legendaria piedra filosofal, un objeto codiciado por Voldemort para obtener la inmortalidad y recuperar su poder.</p>
+    </header>
+
+    <nav>
+        <h2 id="indice">Índice</h2>
+        <ul>
+            <li><a href="#capitulo1">Capítulo 1: El niño que vivió</a></li>
+            <li><a href="#capitulo2">Capítulo 2: La carta de Hogwarts</a></li>
+            <li><a href="#capitulo3">Capítulo 3: El viaje a Hogwarts</a></li>
+            <li><a href="#capitulo4">Capítulo 4: El sombrero seleccionador</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <article id="capitulo1" class="chapter-content">
+            <h2>Capítulo 1: El niño que vivió</h2>
+            <p>La historia comienza con los Dursley, una familia perfectamente normal y orgullosa de serlo, que reside en el número 4 de Privet Drive. Un día, una serie de extraños sucesos alteran su monótona rutina: un gato leyendo un mapa, lluvias de estrellas fugaces y multitudes de personas vestidas con túnicas extrañas celebrando en las calles. El señor Vernon Dursley intenta ignorar estos acontecimientos, temeroso de cualquier cosa que se salga de la norma.</p>
+            <p>Esa noche, Albus Dumbledore, el director de Hogwarts, y la profesora Minerva McGonagall, subjefa de la misma institución, se encuentran en Privet Drive. McGonagall, quien ha estado observando a los Dursley transformada en gato, expresa su preocupación por dejar al pequeño Harry Potter con "la peor clase de muggles que se pueda imaginar". Dumbledore insiste en que es el mejor lugar para él. Poco después, Rubeus Hagrid, el guardabosques de Hogwarts, llega en una motocicleta voladora trayendo consigo a un bebé: Harry Potter, el único superviviente del ataque del tenebroso Lord Voldemort, quien asesinó a sus padres, Lily y James Potter.</p>
+            <p>Harry es dejado en el umbral de la puerta de los Dursley con una carta explicando su situación. La única marca visible del encuentro fatal es una cicatriz en forma de rayo en su frente. Los siguientes diez años, Harry vive una existencia miserable. Sus tíos, Vernon y Petunia (hermana de Lily), y su consentido primo Dudley, lo tratan con desprecio y crueldad, obligándolo a dormir en la alacena debajo de las escaleras y culpándolo de cualquier evento extraño que ocurre a su alrededor, como la inexplicable regeneración de su cabello tras un corte forzado o su aparición súbita en el tejado de la cocina del colegio huyendo de Dudley y su pandilla.</p>
+            <p>Harry crece sin saber nada de su verdadera identidad ni del mundo mágico al que pertenece, creyendo la historia que sus tíos le contaron: que sus padres murieron en un accidente de coche. Sin embargo, el destino tiene otros planes para el niño que vivió, y su vida está a punto de cambiar de una manera que jamás habría imaginado.</p>
+            <div class="navigation-links">
+                <a href="#indice">Volver al índice</a>
+                <a href="#capitulo2">Siguiente Capítulo</a>
+            </div>
+        </article>
+
+        <article id="capitulo2" class="chapter-content">
+            <h2>Capítulo 2: La carta de Hogwarts</h2>
+            <p>Con la proximidad del undécimo cumpleaños de Harry, comienzan a llegar cartas misteriosas dirigidas a él, con una caligrafía verde esmeralda y un sello de lacre púrpura con un escudo de armas. La primera carta, dirigida a "Sr. H. Potter, La Alacena Debajo de la Escalera", es interceptada y destruida por el tío Vernon antes de que Harry pueda leerla. Los Dursley, aterrorizados ante la idea de que Harry descubra la verdad sobre sus orígenes mágicos, se embarcan en una misión cada vez más frenética para evitar que las cartas lleguen a sus manos.</p>
+            <p>A pesar de los esfuerzos de Vernon —clavando el buzón, mudándose a un hotel e incluso huyendo a una cabaña desolada en una isla rocosa en medio del mar— las cartas continúan llegando en cantidades cada vez mayores, transportadas por cientos de lechuzas. La situación se vuelve insostenible, llevando a los Dursley al borde de la desesperación.</p>
+            <p>En la medianoche del undécimo cumpleaños de Harry, mientras una tormenta azota la cabaña, un gigante llamado Rubeus Hagrid derriba la puerta. Hagrid, el guardián de las llaves y terrenos de Hogwarts, finalmente le entrega a Harry su carta de aceptación al Colegio Hogwarts de Magia y Hechicería. Ante la incredulidad de Harry y la furia de los Dursley, Hagrid revela la verdad: Harry es un mago, y sus padres no murieron en un accidente de coche, sino que fueron asesinados por Lord Voldemort, el mago tenebroso más poderoso de todos los tiempos. Harry no solo sobrevivió al ataque, sino que, de alguna manera, provocó la caída de Voldemort, convirtiéndose en una leyenda en el mundo mágico sin siquiera saberlo.</p>
+            <p>Hagrid también le explica que la cicatriz en su frente es la marca de la maldición asesina que Voldemort intentó usar contra él. A pesar de la oposición de los Dursley, Hagrid está decidido a llevar a Harry a Hogwarts para que pueda comenzar su educación como mago.</p>
+            <div class="navigation-links">
+                <a href="#indice">Volver al índice</a>
+                <a href="#capitulo1">Capítulo Anterior</a>
+                <a href="#capitulo3">Siguiente Capítulo</a>
+            </div>
+        </article>
+
+        <article id="capitulo3" class="chapter-content">
+            <h2>Capítulo 3: El viaje a Hogwarts</h2>
+            <p>Al día siguiente, Hagrid acompaña a Harry al Callejón Diagon, un bullicioso centro comercial mágico oculto en el corazón de Londres, al que acceden a través de la trastienda del pub El Caldero Chorreante. Allí, Harry es recibido con asombro y admiración por los magos y brujas, que reconocen al famoso "niño que vivió". Visitan Gringotts, el banco de los magos dirigido por duendes, donde Harry descubre que sus padres le han dejado una considerable fortuna en una de las cámaras acorazadas.</p>
+            <p>Con su recién adquirido dinero, Harry compra todo lo necesario para su primer año en Hogwarts: túnicas, libros de hechizos, un caldero, ingredientes para pociones y, lo más importante, su varita mágica. En la tienda de varitas Ollivanders, el señor Ollivander le explica que la varita escoge al mago. Después de probar varias, Harry encuentra la suya: una varita de acebo y pluma de fénix. Ollivander revela que el fénix cuya pluma reside en la varita de Harry solo dio otra pluma, la cual se encuentra en la varita de Lord Voldemort, estableciendo una conexión misteriosa entre ambos.</p>
+            <p>El primero de septiembre, Harry se dirige a la estación de King's Cross en Londres para tomar el Expreso de Hogwarts. Hagrid le ha dado un billete para el andén nueve y tres cuartos. Tras cierta confusión, Harry conoce a la familia Weasley, una numerosa y amable familia de magos pelirrojos. La señora Weasley le explica cómo acceder al andén secreto: atravesando la barrera sólida entre los andenes nueve y diez.</p>
+            <p>Una vez en el tren, Harry conoce a Ron Weasley, el hijo menor de la familia, con quien entabla amistad rápidamente. Comparten golosinas mágicas como las Grageas de Todos los Sabores y las Ranas de Chocolate. Durante el viaje, también conocen a Hermione Granger, una chica muy inteligente y algo sabionda que ya ha memorizado gran parte de los libros de texto. Aunque su primer encuentro es un poco tenso, este viaje marca el inicio de una amistad que definirá sus años en Hogwarts y sus futuras aventuras.</p>
+            <div class="navigation-links">
+                <a href="#indice">Volver al índice</a>
+                <a href="#capitulo2">Capítulo Anterior</a>
+                <a href="#capitulo4">Siguiente Capítulo</a>
+            </div>
+        </article>
+
+        <article id="capitulo4" class="chapter-content">
+            <h2>Capítulo 4: El sombrero seleccionador</h2>
+            <p>Al caer la noche, el Expreso de Hogwarts llega a la estación de Hogsmeade. Los alumnos de primer año, incluido Harry, son recibidos por Hagrid, quien los guía por un sendero oscuro y estrecho hasta la orilla de un gran lago negro. Suben a pequeñas barcas que, por arte de magia, los transportan a través del agua hacia el imponente castillo de Hogwarts, iluminado y majestuoso sobre una montaña.</p>
+            <p>Al llegar al castillo, son recibidos en el vestíbulo por la profesora Minerva McGonagall, una bruja de aspecto severo pero justo, jefa de la casa Gryffindor y profesora de Transformaciones. Les explica que antes de comenzar el banquete de bienvenida, deberán ser seleccionados para una de las cuatro casas de Hogwarts: Gryffindor, Hufflepuff, Ravenclaw y Slytherin. Cada casa tiene su propia noble historia y ha producido notables magos y brujas. Mientras estén en Hogwarts, sus triunfos conseguirán puntos para su casa, mientras que cualquier infracción de las reglas los perderá.</p>
+            <p>Los nerviosos estudiantes de primer año son conducidos al Gran Comedor, un lugar asombroso con un techo encantado que refleja el cielo exterior y miles de velas flotando en el aire. Todos los demás alumnos ya están sentados en las largas mesas de sus respectivas casas. Frente a los profesores, en un taburete, descansa un viejo y remendado sombrero de mago: el Sombrero Seleccionador. Para sorpresa de Harry, el Sombrero cobra vida y canta una canción sobre su función y las cualidades de cada casa.</p>
+            <p>La profesora McGonagall comienza a llamar a los alumnos por orden alfabético. Uno por uno, se sientan en el taburete y se les coloca el Sombrero Seleccionador, que, tras unos momentos de deliberación (a veces audibles para el estudiante), anuncia la casa a la que pertenecerán. Harry se siente cada vez más ansioso, especialmente porque Ron le ha contado que todos los magos tenebrosos, incluido Voldemort, salieron de Slytherin. Cuando llega su turno, el Sombrero parece tener dificultades para decidir, susurrándole a Harry que podría hacerlo muy bien en Slytherin. Harry, aterrado, piensa "Slytherin no, Slytherin no". Finalmente, el Sombrero grita: "¡GRYFFINDOR!". Harry, aliviado, se une a la ruidosa mesa de Gryffindor, donde Ron y Hermione también son seleccionados poco después, marcando el comienzo oficial de su vida en Hogwarts.</p>
+            <div class="navigation-links">
+                <a href="#indice">Volver al índice</a>
+                <a href="#capitulo3">Capítulo Anterior</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+            <a href="#inicio">Volver al inicio de la página</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>

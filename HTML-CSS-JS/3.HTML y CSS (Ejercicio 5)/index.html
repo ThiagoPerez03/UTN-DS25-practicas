@@ -1,0 +1,107 @@
+<!--Escribir un sitio web en HTML para una Librería. Debe contener:
+Layout: unificado para todo el sitio con cabecera, menú, bloque de contenido y pie. 
+- Hoja de Estilos centralizada y estructura de directorios organizada separando los css e imágenes en directorios aparte.
+- Cabecera: con imagen de fondo (background-image), logo y nombre de la librería.
+- Menú: acceso a Inicio, cada sección, registración y contacto.
+- Pie de página: al menos copyright, redes sociales y términos y condiciones.
+Página principal: debe mostrar bloques para cuatro temas (título con enlace a la sección del tema) y un libro destacado en cada uno (imagen de la tapa, título y autor).
+Secciones: una para cada una de los cuatro temas, debe mostrar 6 libros cada una (título, autor, imagen y descripciones de libros). 
+Registración: Formulario completo solicitando datos personales.
+- Nombre (text)
+- Apellido (text)
+- Fecha de Nacimiento (date)
+- Email (email)
+- Contraseña (password)
+- Sexo (radio)
+- Tema Favorito (select de los temas)
+- Botón (submit)
+Contacto: Dirección y datos de contacto (teléfonos, email). Formulario de contacto.
+IMPORTANTE: Repasar requerimientos y hacer wireframes antes de comenzar con el código.-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="images/logo.png" alt="logo de la librería" class="logo">
+            </div>
+            <h1>LIBRERIA ANTIGUITOS</h1>
+        </header>
+        <nav>
+            <ul>
+                 <li><a href="index.html">Inicio</a></li>
+                 <li><a href="./pages/clasicos.html">Clasicos</a></li>
+                 <li><a href="./pages/novelas.html">Novelas</a></li>
+                 <li><a href="./pages/fantasia.html">Fantasia</a></li>
+                 <li><a href="./pages/poesia.html">Poesia</a></li>
+                 <li><a href="./pages/registro.html">Registro</a></li>
+                 <li><a href="./pages/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section class="generos">
+                <h2><a href="./pages/clasicos.html">Clásicos</a></h2>
+                <div class="featured-book">
+                    <img src="images/clasicos/iliada.jpeg" alt="Libro destacado de clásicos">
+                    <div class="featured-book-info">
+                        <h3>La Ilíada</h3>
+                        <p class="author">Homero</p>
+                        <p>Poema épico que narra el décimo año de la Guerra de Troya, centrándose en la furia del héroe Aquiles. Es un texto fundamental sobre el honor, la gloria, la ira y la intervención de los dioses en los asuntos humanos.</p>
+                    </div>
+                </div>
+            </section>
+             <section class="generos">
+                <h2><a href="./pages/novelas.html">Novelas</a></h2>
+                <div class="featured-book">
+                    <img src="images/novelas/genji.jpg" alt="Libro destacado de novelas">
+                    <div class="featured-book-info">
+                        <h3>El Cuento de Genji</h3>
+                        <p class="author">Murasaki Shikibu</p>
+                        <p>Considerada por muchos como la primera novela de la historia. Narra la vida y los romances del príncipe Hikaru Genji en la corte imperial japonesa, con una profundidad psicológica sin precedentes para su época.</p>
+                    </div>
+                </div>
+            </section>
+             <section class="generos">
+                <h2><a href="./pages/fantasia.html">Fantasia</a></h2>
+                <div class="featured-book">
+                    <img src="images//fantasia/epopeya.webp" alt="Libro destacado de fantasia">
+                    <div class="featured-book-info">
+                        <h3>La Epopeya de Gilgamesh</h3>
+                        <p class="author">Anónimo</p>
+                        <p>La obra literaria más antigua. Narra las aventuras del rey Gilgamesh y su amigo Enkidu en su lucha contra bestias fantásticas y su búsqueda de la inmortalidad tras la muerte de su compañero.</p>
+                    </div>
+                </div>
+            </section>
+             <section class="generos">
+                <h2><a href="./pages/poesia.html">Poesia</a></h2>
+                <div class="featured-book">
+                    <img src="images/poesia/odisea.jpeg" alt="Libro destacado de poesia">
+                    <div class="featured-book-info">
+                        <h3>La Odisea</h3>
+                        <p class="author">Homero</p>
+                        <p>Epopeya poética que narra el arduo viaje de regreso del héroe Odiseo. Una obra fundacional llena de monstruos, dioses caprichosos, hechiceras y aventuras que exploran la astucia y la perseverancia.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="social-icons">
+                <a href="#"><img src="images/fb.png" alt="Facebook"></a>
+                <a href="#"><img src="images/ig.png" alt="Instagram"></a>
+                <a href="#"><img src="images/tw.png" alt="Twitter"></a>
+            </div>
+            <div class="footer-links">
+                <p>&copy; 2025 El Emporio del Lector. Todos los derechos reservados.</p>
+                <a href="#">Términos y Condiciones</a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
