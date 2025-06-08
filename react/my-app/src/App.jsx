@@ -1,7 +1,7 @@
-import Header from '/Users/thia/Desktop/Desarrollo 2025/UTN-DS25-practicas/react/my-app/src/coponents/header.jsx';
-import Nav from '/Users/thia/Desktop/Desarrollo 2025/UTN-DS25-practicas/react/my-app/src/coponents/nav.jsx';
-import FeaturedBookSection from '/Users/thia/Desktop/Desarrollo 2025/UTN-DS25-practicas/react/my-app/src/coponents/featureBook.jsx';
-import Footer from '/Users/thia/Desktop/Desarrollo 2025/UTN-DS25-practicas/react/my-app/src/coponents/footer.jsx';
+import Header from './coponents/header.jsx';
+import Nav from './coponents/nav.jsx';
+import FeaturedBookSection from './coponents/featureBook.jsx';
+import Footer from './coponents/footer.jsx';
 import './styles.css'; 
 
 
@@ -52,7 +52,7 @@ function App() {
       <main>
         {featuredBooks.map((book, index) => (
           <FeaturedBookSection
-            key={index} // key es importante para React al renderizar listas
+            key={index} 
             title={book.sectionTitle}
             link={book.link}
             imageUrl={book.imageUrl}
