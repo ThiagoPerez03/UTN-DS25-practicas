@@ -91,8 +91,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    border-color: #F5F5DC;
-    text-decoration: none;
+    text-decoration: underline;
     color: var(--primary-color);
 }
 
