@@ -1,7 +1,7 @@
-import Header from './coponents/header.jsx';
-import Nav from './coponents/nav.jsx';
-import FeaturedBookSection from './coponents/featureBook.jsx';
-import Footer from './coponents/footer.jsx';
+import Header from './components/header.jsx';
+import Nav from './components/nav.jsx';
+import FeaturedBookSection from './components/featureBook.jsx';
+import Footer from './components/footer.jsx';
 import './styles.css'; 
 
 

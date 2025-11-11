@@ -1,14 +1,26 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { allBooks } from '../data/books'; 
+import { useParams, useLocation } from 'react-router-dom';
 import BookCard from '../components/BookCard'; 
 
-function CatalogPage() {
+function CatalogPage({ books = [] }) {
   const { categoryName } = useParams();
 
-  const filteredBooks = categoryName 
-    ? allBooks.filter(book => book.section === categoryName)
-    : allBooks;
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const q = params.get('q') || '';
+
+  let filteredBooks = categoryName
+    ? books.filter(book => book.section === categoryName)
+    : books;
+
+  if (q) {
+    const term = q.toLowerCase();
+    filteredBooks = filteredBooks.filter(b => (
+      b.title.toLowerCase().includes(term) ||
+      b.author.toLowerCase().includes(term) ||
+      (b.description && b.description.toLowerCase().includes(term))
+    ));
+  }
 
   const pageTitle = categoryName ? categoryName : 'Nuestro Catálogo';
 
@@ -20,7 +32,7 @@ function CatalogPage() {
         </h1>
       </div>
 
-      <section className="grid grid-cols-4 gap-8">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {filteredBooks.length > 0 ? (
           filteredBooks.map(book => (
             <BookCard

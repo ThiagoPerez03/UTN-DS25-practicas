@@ -16,7 +16,7 @@
 
 body {
     background-image: var(--background-image);
-    background-size: auto;
+    background-size: cover;
     background-attachment: fixed;
     margin: 0;
     display: flex;
@@ -24,9 +24,9 @@ body {
 }
 
 main {
-    background-color: var(--primery-color);
+    background-color: var(--primary-color);
     background-size: cover;
-    color: var(--secondry-color);
+    color: var(--secondary-color);
     padding: 2rem;
 }
 
@@ -48,9 +48,13 @@ a:hover {
 }
 
 header {
+    /* background image in header as requested in the requirements; keep color as fallback */
+    background-image: var(--background-image);
+    background-size: cover;
+    background-position: center;
     background-color: var(--secondary-color);
     color: var(--primary-color);
-    padding: 20px;
+    padding: 40px 20px;
     text-align: center;
 }
 
@@ -148,8 +152,7 @@ footer .footer-links a {
     display: flex;
     align-items: center;
     gap: 2rem;
-    border: 3px;
-    border-color: var(--secondary-color);
+    border: 3px solid var(--secondary-color);
 }
 
 .featured-book img {
@@ -241,7 +244,6 @@ footer .footer-links a {
     transition: background-color 0.3s ease;
     margin-left: auto;
     margin-right: auto;
-    display: block;
 }
 
 .btn:hover {

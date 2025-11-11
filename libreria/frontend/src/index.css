@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #F5F5DC;
+    --color-secondary: #3D2B1F;
+    --color-terciary: #252525;
+    --font-cinzel: 'Cinzel', serif;
+}
+
+:root {
+    --background-image: url('/images/fondo.jpg');
+}
+
+body {
+    background-image: var(--background-image);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.panel-bg {
+    position: relative;
+    overflow: hidden;
+}
+.panel-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/fondo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 0;
+}
+.panel-bg > * {
+    position: relative;
+    z-index: 1;
+}
