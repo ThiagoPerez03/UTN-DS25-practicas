@@ -1,8 +1,10 @@
 import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import BookCard from '../components/BookCard'; 
+import BookCard from '../components/BookCard';
+import { useBooks } from '../context/BooksContext.jsx';
 
-function CatalogPage({ books = [] }) {
+function CatalogPage() {
+  const { books = [], loading } = useBooks();
   const { categoryName } = useParams();
 
   const location = useLocation();
@@ -32,22 +34,26 @@ function CatalogPage({ books = [] }) {
         </h1>
       </div>
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {filteredBooks.length > 0 ? (
-          filteredBooks.map(book => (
-            <BookCard
-              key={book.id}
-              title={book.title}
-              author={book.author}
-              description={book.description}
-              imageUrl={book.imageUrl}
-              altText={book.altText}
-            />
-          ))
-        ) : (
-          <p>No se encontraron libros en esta categoría.</p>
-        )}
-      </section>
+      {loading ? (
+        <p>Cargando libros...</p>
+      ) : (
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {filteredBooks.length > 0 ? (
+            filteredBooks.map(book => (
+              <BookCard
+                key={book.id}
+                title={book.title}
+                author={book.author}
+                description={book.description}
+                imageUrl={book.imageUrl}
+                altText={book.altText}
+              />
+            ))
+          ) : (
+            <p>No se encontraron libros en esta categoría.</p>
+          )}
+        </section>
+      )}
     </>
   );
 }

@@ -1,13 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useBooks } from '../context/BooksContext.jsx';
 
-function AddBookPage({ setBooks }) {
+function AddBookPage() {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    const id = `${data.section.toLowerCase()}-${Date.now()}`;
+  const { addBook } = useBooks();
+
+  const onSubmit = async (data) => {
+    const id = `${data.section ? data.section.toLowerCase() : 'sinsec'}-${Date.now()}`;
     const newBook = {
       id,
       title: data.title || 'Sin título',
@@ -16,10 +19,10 @@ function AddBookPage({ setBooks }) {
       imageUrl: data.imageUrl || '/images/novelas/quijote.avif',
       altText: data.altText || `Portada de ${data.title || 'libro'}`,
       section: data.section || 'Novelas',
-      featured: data.featured === 'on' || false,
+      featured: !!data.featured,
     };
 
-    setBooks(prev => [newBook, ...prev]);
+    await addBook(newBook);
     reset();
     navigate('/catalogo');
   };

@@ -1,13 +1,19 @@
 import React from 'react';
+import { useBooks } from '../context/BooksContext.jsx';
 
-function HomePage({ books = [] }) {
+function HomePage() {
+  const { books = [], loading } = useBooks();
   const featuredBooks = books.filter(book => book.featured);
 
   return (
     <>
       <div className="flex flex-col gap-12">
-        {featuredBooks.map(book => (
-          <div key={book.id} className="flex flex-col md:flex-row items-center gap-8 p-4 border-2 border-secondary">
+        {loading ? (
+          <p>Cargando destacados...</p>
+        ) : (
+          <>
+            {featuredBooks.map(book => (
+              <div key={book.id} className="flex flex-col md:flex-row items-center gap-8 p-4 border-2 border-secondary">
             <img
               src={book.imageUrl}
               alt={book.altText}
@@ -22,7 +28,9 @@ function HomePage({ books = [] }) {
               <p className="text-base">{book.description}</p>
             </div>
           </div>
-        ))}
+            ))}
+          </>
+        )}
       </div>
     </>
   );

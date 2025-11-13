@@ -1,0 +1,22 @@
+[
+  {
+    "id": "clasico-1",
+    "title": "La Ilíada",
+    "author": "Homero",
+    "description": "Narra la furia de Aquiles durante la Guerra de Troya. Un texto fundamental sobre el honor, la gloria y la ira.",
+    "imageUrl": "/images/clasicos/iliada.jpeg",
+    "altText": "Portada de La Ilíada",
+    "section": "Clasicos",
+    "featured": true
+  },
+  {
+    "id": "clasico-2",
+    "title": "Edipo Rey",
+    "author": "Sófocles",
+    "description": "La tragedia griega por excelencia sobre el destino, la culpa y la búsqueda de la verdad a cualquier precio.",
+    "imageUrl": "/images/clasicos/edipo.jpeg",
+    "altText": "Portada de Edipo Rey",
+    "section": "Clasicos",
+    "featured": false
+  }
+]
