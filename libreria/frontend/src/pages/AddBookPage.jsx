@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useBooks } from '../context/BooksContext.jsx';
+import { useBooks } from '../context/useBooks';
 
 function AddBookPage() {
   const { register, handleSubmit, reset } = useForm();
@@ -33,7 +33,15 @@ function AddBookPage() {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <input {...register('title')} placeholder="Título" className="p-2 border" />
         <input {...register('author')} placeholder="Autor" className="p-2 border" />
-        <input {...register('section')} placeholder="Sección (Clasicos/Novelas/Fantasia/Poesia)" className="p-2 border" />
+        <label className="block">
+          <span className="block mb-2">Sección</span>
+          <select {...register('section')} className="w-full p-2 border">
+            <option value="Clasicos">Clasicos</option>
+            <option value="Novelas">Novelas</option>
+            <option value="Fantasia">Fantasia</option>
+            <option value="Poesia">Poesia</option>
+          </select>
+        </label>
         <input {...register('imageUrl')} placeholder="URL imagen (opcional)" className="p-2 border" />
         <input {...register('altText')} placeholder="Alt text" className="p-2 border" />
         <textarea {...register('description')} placeholder="Descripción" className="p-2 border" />

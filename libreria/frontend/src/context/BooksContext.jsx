@@ -1,13 +1,14 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAuth } from './useAuth';
+import { BooksContext } from './books-core';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-
-const BooksContext = createContext(null);
 
 export function BooksProvider({ children }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { token } = useAuth();
 
   async function fetchBooks() {
     try {
@@ -27,9 +28,12 @@ export function BooksProvider({ children }) {
   }, []);
 
   async function addBook(book) {
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
     const res = await fetch(`${API_BASE}/books`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify(book),
     });
     const created = await res.json();
@@ -38,9 +42,12 @@ export function BooksProvider({ children }) {
   }
 
   async function updateBook(id, patch) {
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
     const res = await fetch(`${API_BASE}/books/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify(patch),
     });
     const updated = await res.json();
@@ -49,7 +56,9 @@ export function BooksProvider({ children }) {
   }
 
   async function deleteBook(id) {
-    await fetch(`${API_BASE}/books/${id}`, { method: 'DELETE' });
+    const headers = {};
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    await fetch(`${API_BASE}/books/${id}`, { method: 'DELETE', headers });
     setBooks(prev => prev.filter(b => b.id !== id));
   }
 
@@ -60,8 +69,3 @@ export function BooksProvider({ children }) {
   );
 }
 
-export function useBooks() {
-  const ctx = useContext(BooksContext);
-  if (!ctx) throw new Error('useBooks must be used inside BooksProvider');
-  return ctx;
-}

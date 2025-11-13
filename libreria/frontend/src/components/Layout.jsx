@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/useAuth';
 
 function Layout({ children }) {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -23,13 +24,10 @@ function Layout({ children }) {
             </h1>
           </div>
 
-          {/* Registro icon on header (moved out of nav) */}
-          <div className="flex items-center">
-            <Link to="/registro" aria-label="Registro" className="text-primary hover:opacity-90">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 sm:w-9 sm:h-9">
-                <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 9a7 7 0 0114 0H5z" />
-              </svg>
-            </Link>
+          {/* Auth / AddBook area */}
+          <div className="flex items-center gap-3">
+            {/* If logged, show Add Book button + avatar + logout */}
+            <AuthArea />
           </div>
         </div>
       </header>
@@ -160,5 +158,33 @@ function NavMenu({ onToggleSearch }) {
         </ul>
       </div>
     </div>
+  );
+}
+
+function AuthArea() {
+  const { user, logout } = useAuth();
+  return (
+    <>
+      {!user ? (
+        <div className="flex items-center gap-3">
+          <Link to="/login" className="text-primary hover:opacity-90">Ingresar</Link>
+          <Link to="/registro" aria-label="Registro" className="text-primary hover:opacity-90">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 sm:w-9 sm:h-9">
+              <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 9a7 7 0 0114 0H5z" />
+            </svg>
+          </Link>
+        </div>
+      ) : (
+        <div className="flex items-center gap-3">
+          <Link to="/agregar" className="px-3 py-2 bg-secondary text-primary rounded-md">Agregar libro</Link>
+          <div className="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 sm:w-9 sm:h-9">
+              <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 9a7 7 0 0114 0H5z" />
+            </svg>
+            <button onClick={logout} className="text-primary underline">Salir</button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

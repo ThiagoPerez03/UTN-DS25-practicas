@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import BookCard from '../components/BookCard';
-import { useBooks } from '../context/BooksContext.jsx';
+import { useBooks } from '../context/useBooks';
 
 function CatalogPage() {
   const { books = [], loading } = useBooks();

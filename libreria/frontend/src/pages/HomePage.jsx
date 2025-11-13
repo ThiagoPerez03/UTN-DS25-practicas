@@ -1,5 +1,5 @@
 import React from 'react';
-import { useBooks } from '../context/BooksContext.jsx';
+import { useBooks } from '../context/useBooks';
 
 function HomePage() {
   const { books = [], loading } = useBooks();

@@ -24,3 +24,5 @@ yarn-error.log*
 # Optional lock files for contributors' package managers (keep one in repo if you want)
 # package-lock.json
 # yarn.lock
+
+/src/generated/prisma

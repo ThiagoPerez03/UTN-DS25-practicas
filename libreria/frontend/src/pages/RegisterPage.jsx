@@ -2,6 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useAuth } from '../context/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
     nombre: yup.string().required('El nombre es obligatorio'),
@@ -17,12 +19,14 @@ function RegisterPage() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
+    const { register: registerUser } = useAuth();
+    const navigate = useNavigate();
 
     const onSubmit = data => {
-        console.log('Registro:', data);
-        // aquí podrías enviar al backend
-        alert('Registro enviado (ver consola)');
+        // register locally and navigate to home
+        registerUser(data);
         reset();
+        navigate('/');
     };
 
     return (
