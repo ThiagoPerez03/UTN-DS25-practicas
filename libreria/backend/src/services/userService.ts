@@ -14,7 +14,29 @@ async function findUserByEmail(email: string) {
   return await prisma.user.findUnique({ where: { email } });
 }
 
+async function findUserById(id: string) {
+  return await prisma.user.findUnique({ where: { id } });
+}
+
 async function verifyPassword(user: any, plain: string) {
   if (!user) return false;
   return await bcrypt.compare(plain, user.password);
 }
+
+async function updateUser(id: string, data: { nombre?: string; apellido?: string; email?: string; password?: string }) {
+  const updateData: any = {};
+  
+  if (data.nombre !== undefined) updateData.nombre = data.nombre;
+  if (data.apellido !== undefined) updateData.apellido = data.apellido;
+  if (data.email !== undefined) updateData.email = data.email;
+  if (data.password) {
+    updateData.password = await bcrypt.hash(data.password, 10);
+  }
+  
+  return await prisma.user.update({
+    where: { id },
+    data: updateData
+  });
+}
+
+module.exports = { createUser, findUserByEmail, findUserById, verifyPassword, updateUser };

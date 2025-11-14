@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: libreria-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-in-production}
+      - PORT=3001
+      - NODE_ENV=production
+    depends_on:
+      - db
+    networks:
+      - libreria-network
+    restart: unless-stopped
+
+  # Frontend React + Nginx
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:3001
+    container_name: libreria-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - libreria-network
+    restart: unless-stopped
+
+  # PostgreSQL Database (opcional - si no usas Supabase)
+  db:
+    image: postgres:16-alpine
+    container_name: libreria-db
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-libreria}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - libreria-network
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+
+networks:
+  libreria-network:
+    driver: bridge

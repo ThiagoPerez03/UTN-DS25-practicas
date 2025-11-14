@@ -5,6 +5,8 @@ import CatalogPage from './pages/CatalogPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import AddBookPage from './pages/AddBookPage.jsx';
+import EditBookPage from './pages/EditBookPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 import { BooksProvider } from './context/BooksContext.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import LoginPage from './pages/LoginPage.jsx';
@@ -23,6 +25,8 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/contacto" element={<ContactPage />} />
               <Route path="/agregar" element={<AddBookPage />} />
+              <Route path="/editar/:id" element={<EditBookPage />} />
+              <Route path="/perfil" element={<ProfilePage />} />
             </Routes>
           </Layout>
         </BooksProvider>

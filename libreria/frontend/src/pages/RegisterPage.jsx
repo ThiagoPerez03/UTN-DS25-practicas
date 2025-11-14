@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useAuth } from '../context/useAuth';
-import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
     nombre: yup.string().required('El nombre es obligatorio'),
@@ -20,13 +19,15 @@ function RegisterPage() {
         resolver: yupResolver(schema),
     });
     const { register: registerUser } = useAuth();
-    const navigate = useNavigate();
 
-    const onSubmit = data => {
-        // register locally and navigate to home
-        registerUser(data);
-        reset();
-        navigate('/');
+    const onSubmit = async (data) => {
+        try {
+            await registerUser(data);
+            reset();
+        } catch (error) {
+            // Error ya mostrado en AuthContext via alert
+            console.error('Error en registro:', error);
+        }
     };
 
     return (

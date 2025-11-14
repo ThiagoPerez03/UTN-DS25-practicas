@@ -21,27 +21,43 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function register(payload) {
-    const res = await fetch(`${API_BASE}/auth/register`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-    });
-    if (!res.ok) throw new Error('Registration failed');
-    const data = await res.json();
-    setUser(data.user);
-    setToken(data.token);
-    localStorage.setItem('auth', JSON.stringify({ user: data.user, token: data.token }));
-    navigate('/');
+    try {
+      const res = await fetch(`${API_BASE}/auth/register`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message || 'Registration failed');
+      }
+      setUser(data.user);
+      setToken(data.token);
+      localStorage.setItem('auth', JSON.stringify({ user: data.user, token: data.token }));
+      navigate('/');
+    } catch (error) {
+      console.error('Registration error:', error);
+      alert(error.message || 'Error al registrarse. Por favor intenta de nuevo.');
+      throw error;
+    }
   }
 
   async function login(credentials) {
-    const res = await fetch(`${API_BASE}/auth/login`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(credentials)
-    });
-    if (!res.ok) throw new Error('Login failed');
-    const data = await res.json();
-    setUser(data.user);
-    setToken(data.token);
-    localStorage.setItem('auth', JSON.stringify({ user: data.user, token: data.token }));
-    navigate('/');
+    try {
+      const res = await fetch(`${API_BASE}/auth/login`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(credentials)
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message || 'Login failed');
+      }
+      setUser(data.user);
+      setToken(data.token);
+      localStorage.setItem('auth', JSON.stringify({ user: data.user, token: data.token }));
+      navigate('/');
+    } catch (error) {
+      console.error('Login error:', error);
+      alert(error.message || 'Error al iniciar sesión. Verifica tus credenciales.');
+      throw error;
+    }
   }
 
   function logout() {
@@ -51,8 +67,38 @@ export function AuthProvider({ children }) {
     navigate('/');
   }
 
+  async function updateUser(updateData) {
+    try {
+      const headers = { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      };
+      
+      const res = await fetch(`${API_BASE}/auth/profile`, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify(updateData)
+      });
+      
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.message || 'Update failed');
+      }
+      
+      // Actualizar usuario en el estado y localStorage
+      setUser(data.user);
+      localStorage.setItem('auth', JSON.stringify({ user: data.user, token }));
+      
+      return data;
+    } catch (error) {
+      console.error('Update profile error:', error);
+      throw error;
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, token, register, login, logout }}>
+    <AuthContext.Provider value={{ user, token, register, login, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

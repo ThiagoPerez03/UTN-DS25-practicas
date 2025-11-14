@@ -36,6 +36,14 @@ export function BooksProvider({ children }) {
       headers,
       body: JSON.stringify(book),
     });
+    
+    if (!res.ok) {
+      const errorData = await res.json();
+      const error = new Error(errorData.message || 'Error al agregar libro');
+      error.response = { status: res.status, data: errorData };
+      throw error;
+    }
+    
     const created = await res.json();
     setBooks(prev => [created, ...prev]);
     return created;
@@ -50,6 +58,14 @@ export function BooksProvider({ children }) {
       headers,
       body: JSON.stringify(patch),
     });
+    
+    if (!res.ok) {
+      const errorData = await res.json();
+      const error = new Error(errorData.message || 'Error al actualizar libro');
+      error.response = { status: res.status, data: errorData };
+      throw error;
+    }
+    
     const updated = await res.json();
     setBooks(prev => prev.map(b => (b.id === id ? updated : b)));
     return updated;

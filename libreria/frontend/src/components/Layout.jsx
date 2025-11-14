@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
+import { FaPlus, FaUser } from 'react-icons/fa';
 
 function Layout({ children }) {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -49,8 +50,8 @@ function Layout({ children }) {
                   placeholder="Buscar libros por título, autor o descripción..."
                   className="flex-1 p-2 border border-[#c8bca9] bg-white"
                 />
-                <button type="submit" className="px-4 py-2 bg-secondary text-primary">Buscar</button>
-                <button type="button" onClick={() => setSearchOpen(false)} className="px-3 py-2 border">Cerrar</button>
+                <button type="submit" className="px-4 py-2 bg-secondary hover:bg-secondary/90 text-primary">Buscar</button>
+                <button type="button" onClick={() => setSearchOpen(false)} className="px-3 py-2 border hover:bg-secondary/10">Cerrar</button>
               </form>
             </div>
           )}
@@ -163,25 +164,74 @@ function NavMenu({ onToggleSearch }) {
 
 function AuthArea() {
   const { user, logout } = useAuth();
+  const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef(null);
+
+  // Cerrar menú al hacer clic fuera
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    }
+
+    if (showMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showMenu]);
+
   return (
     <>
       {!user ? (
-        <div className="flex items-center gap-3">
-          <Link to="/login" className="text-primary hover:opacity-90">Ingresar</Link>
-          <Link to="/registro" aria-label="Registro" className="text-primary hover:opacity-90">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 sm:w-9 sm:h-9">
-              <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 9a7 7 0 0114 0H5z" />
-            </svg>
+        <div className="flex items-center gap-4">
+          <Link to="/login" className="flex flex-col items-center text-primary hover:opacity-90 transition-opacity">
+            <FaUser className="w-8 h-8 sm:w-9 sm:h-9" />
+            <span className="text-xs mt-1">Iniciar sesión</span>
           </Link>
         </div>
       ) : (
-        <div className="flex items-center gap-3">
-          <Link to="/agregar" className="px-3 py-2 bg-secondary text-primary rounded-md">Agregar libro</Link>
-          <div className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 sm:w-9 sm:h-9">
-              <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 9a7 7 0 0114 0H5z" />
-            </svg>
-            <button onClick={logout} className="text-primary underline">Salir</button>
+        <div className="flex items-center gap-6">
+          <Link 
+            to="/agregar" 
+            className="px-3 py-2 bg-primary text-secondary rounded-md hover:opacity-90 transition-colors flex items-center gap-2 font-semibold shadow-md"
+            title="Agregar nuevo libro"
+          >
+            <FaPlus />
+            <span className="hidden sm:inline">Agregar libro</span>
+          </Link>
+          
+          <div className="relative" ref={menuRef}>
+            <button 
+              onClick={() => setShowMenu(!showMenu)}
+              className="flex flex-col items-center text-primary hover:opacity-80 transition-opacity cursor-pointer"
+              title="Mi cuenta"
+              aria-label="Menú de usuario"
+            >
+              <FaUser className="w-8 h-8 sm:w-9 sm:h-9" />
+              <span className="text-xs mt-1">Mi cuenta</span>
+            </button>
+
+            {showMenu && (
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg z-50">
+                <Link
+                  to="/perfil"
+                  onClick={() => setShowMenu(false)}
+                  className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b"
+                >
+                  Ver mi perfil
+                </Link>
+                <button
+                  onClick={() => {
+                    setShowMenu(false);
+                    logout();
+                  }}
+                  className="w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-red-50"
+                >
+                  Cerrar sesión
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
