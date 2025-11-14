@@ -5,7 +5,13 @@ const booksRouter = require('./routes/books');
 const authRouter = require('./routes/auth');
 
 const app = express();
-app.use(cors());
+
+// Configurar CORS
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN || '*',
+  credentials: true
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/books', booksRouter);
