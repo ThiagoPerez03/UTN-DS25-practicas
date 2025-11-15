@@ -33,8 +33,11 @@ app.use('/books', booksRouter);
 app.use('/auth', authRouter);
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Backend API listening on http://localhost:${PORT}`);
+const HOST = '0.0.0.0'; // Escuchar en todas las interfaces de red (necesario para Railway)
+
+app.listen(PORT, HOST, () => {
+  console.log(`Backend API listening on http://${HOST}:${PORT}`);
   console.log(`CORS enabled for: ${process.env.CORS_ORIGIN || '*'}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
 
