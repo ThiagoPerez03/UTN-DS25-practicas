@@ -25,11 +25,12 @@ FROM nginx:alpine
 # Copiar archivos estáticos compilados
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copiar configuración personalizada de nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copiar script de inicio
+COPY start-nginx.sh /start-nginx.sh
+RUN chmod +x /start-nginx.sh
 
-# Exponer el puerto 80
+# Exponer el puerto (Railway lo asignará dinámicamente)
 EXPOSE 80
 
-# Nginx se inicia automáticamente con la imagen base
-CMD ["nginx", "-g", "daemon off;"]
+# Usar el script de inicio que configura el puerto correcto
+CMD ["/start-nginx.sh"]
