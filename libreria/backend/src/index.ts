@@ -6,25 +6,13 @@ const authRouter = require('./routes/auth');
 
 const app = express();
 
-// Configurar CORS
-const allowedOrigins = process.env.CORS_ORIGIN 
-  ? [process.env.CORS_ORIGIN] 
-  : ['*'];
-
+// Configurar CORS - simplificado
 const corsOptions = {
-  origin: function (origin, callback) {
-    // Permitir requests sin origin (como mobile apps o curl)
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins[0] === '*' || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: process.env.CORS_ORIGIN || '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
@@ -36,5 +24,6 @@ app.use('/auth', authRouter);
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Backend API listening on http://localhost:${PORT}`);
-  console.log(`CORS enabled for: ${allowedOrigins.join(', ')}`);
+  console.log(`CORS enabled for: ${process.env.CORS_ORIGIN || '*'}`);
 });
+
