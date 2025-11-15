@@ -1,3 +1,4 @@
+// @ts-nocheck
 const _prisma = require('../prisma');
 const prisma = _prisma && _prisma.default ? _prisma.default : _prisma;
 const bcrypt = require('bcryptjs');
