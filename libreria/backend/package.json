@@ -7,8 +7,9 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "prisma generate",
-    "start": "prisma migrate deploy && ts-node --transpile-only -P tsconfig.prod.json src/index.ts",
+    "build": "prisma generate && tsc -p tsconfig.prod.json",
+    "start": "prisma migrate deploy && node dist/src/index.js",
+    "start:dev": "prisma migrate deploy && ts-node --transpile-only -P tsconfig.prod.json src/index.ts",
     "seed": "node prisma/seed.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate deploy"

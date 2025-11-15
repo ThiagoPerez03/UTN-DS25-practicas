@@ -1,5 +1,5 @@
 /// <reference types="jest" />
-const bcrypt = require('bcryptjs');
+import * as bcrypt from 'bcryptjs';
 
 describe('Password Hashing Utilities', () => {
   describe('bcrypt password hashing', () => {

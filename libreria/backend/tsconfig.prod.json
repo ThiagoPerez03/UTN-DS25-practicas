@@ -2,13 +2,14 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "isolatedModules": false,
-    "noEmit": true
+    "outDir": "./dist",
+    "rootDir": "./",
+    "noEmit": false
   },
-  "ts-node": {
-    "transpileOnly": true,
-    "files": false,
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  }
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
 }
